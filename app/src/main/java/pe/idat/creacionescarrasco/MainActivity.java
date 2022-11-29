@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import pe.idat.creacionescarrasco.config.VariablesGlobales;
 import pe.idat.creacionescarrasco.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
