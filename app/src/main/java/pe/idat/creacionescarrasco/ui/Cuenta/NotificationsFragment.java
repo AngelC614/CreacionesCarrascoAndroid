@@ -1,4 +1,4 @@
-package pe.idat.creacionescarrasco.ui.notifications;
+package pe.idat.creacionescarrasco.ui.Cuenta;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

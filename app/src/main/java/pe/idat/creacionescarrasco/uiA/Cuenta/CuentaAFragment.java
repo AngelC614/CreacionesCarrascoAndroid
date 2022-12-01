@@ -11,28 +11,34 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import pe.idat.creacionescarrasco.R;
+import pe.idat.creacionescarrasco.databinding.FragmentCuentaABinding;
+import pe.idat.creacionescarrasco.databinding.FragmentDashboardBinding;
+import pe.idat.creacionescarrasco.ui.Registro.DashboardViewModel;
 
 public class CuentaAFragment extends Fragment {
+    private FragmentCuentaABinding binding;
 
-    private CuentaAViewModel mViewModel;
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        CuentaAViewModel cuentaAViewModel =
+                new ViewModelProvider(this).get(CuentaAViewModel.class);
 
-    public static CuentaAFragment newInstance() {
-        return new CuentaAFragment();
+        binding = FragmentCuentaABinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        final TextView textView = binding.textCuenta;
+        cuentaAViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        return root;
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_cuenta_a, container, false);
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CuentaAViewModel.class);
-        // TODO: Use the ViewModel
-    }
 
 }

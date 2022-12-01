@@ -11,28 +11,34 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import pe.idat.creacionescarrasco.R;
+import pe.idat.creacionescarrasco.databinding.FragmentInicioABinding;
+import pe.idat.creacionescarrasco.databinding.FragmentListaABinding;
+import pe.idat.creacionescarrasco.uiA.Inicio.InicioAViewModel;
 
 public class ListaAFragment extends Fragment {
 
-    private ListaAViewModel mViewModel;
+    private FragmentListaABinding binding;
 
-    public static ListaAFragment newInstance() {
-        return new ListaAFragment();
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        ListaAViewModel listaAViewModel =
+                new ViewModelProvider(this).get(ListaAViewModel.class);
+
+        binding = FragmentListaABinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        final TextView textView = binding.textLista;
+        listaAViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        return root;
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_lista_a, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ListaAViewModel.class);
-        // TODO: Use the ViewModel
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
 }

@@ -11,28 +11,34 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import pe.idat.creacionescarrasco.R;
+import pe.idat.creacionescarrasco.databinding.FragmentCuentaABinding;
+import pe.idat.creacionescarrasco.databinding.FragmentInicioABinding;
+import pe.idat.creacionescarrasco.uiA.Cuenta.CuentaAViewModel;
 
 public class InicioAFragment extends Fragment {
 
-    private InicioAViewModel mViewModel;
+    private FragmentInicioABinding binding;
 
-    public static InicioAFragment newInstance() {
-        return new InicioAFragment();
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        InicioAViewModel inicioAViewModel =
+                new ViewModelProvider(this).get(InicioAViewModel.class);
+
+        binding = FragmentInicioABinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        final TextView textView = binding.textInicio;
+        inicioAViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        return root;
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_inicio_a, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(InicioAViewModel.class);
-        // TODO: Use the ViewModel
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
 }

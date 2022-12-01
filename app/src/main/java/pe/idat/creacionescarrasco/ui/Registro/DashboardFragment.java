@@ -1,4 +1,4 @@
-package pe.idat.creacionescarrasco.ui.dashboard;
+package pe.idat.creacionescarrasco.ui.Registro;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

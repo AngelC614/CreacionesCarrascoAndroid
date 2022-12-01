@@ -1,4 +1,4 @@
-package pe.idat.creacionescarrasco.ui.home;
+package pe.idat.creacionescarrasco.ui.Inicio;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,7 +10,7 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("Info Inicio");
     }
 
     public LiveData<String> getText() {
