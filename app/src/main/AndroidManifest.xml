@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CreacionesCarrasco"
         tools:targetApi="31">
+
         <activity
             android:name=".AdminActivity"
             android:exported="true">
