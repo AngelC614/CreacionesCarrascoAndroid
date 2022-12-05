@@ -16,10 +16,13 @@ import com.google.gson.JsonParser;
 
 import org.json.JSONObject;
 
+import java.util.Arrays;
 import pe.idat.creacionescarrasco.Interface.MetodosApi;
+import pe.idat.creacionescarrasco.config.VariablesGlobales;
 import pe.idat.creacionescarrasco.databinding.ActivityLoginBinding;
 import pe.idat.creacionescarrasco.model.LoginRequest;
 import pe.idat.creacionescarrasco.model.LoginResponse;
+import pe.idat.creacionescarrasco.model.ValidRoles;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -63,9 +66,24 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                Log.i("llego", "onResponse llego");
-                //Obtiene el token y lo muestra como mensaje
-                Log.i("objeto de respuesta", response.code() + "");
+                if(response.code() == 401){
+                    Toast toasterror =
+                            Toast.makeText(getApplicationContext(),
+                                    "Las credenciales no son válidas", Toast.LENGTH_SHORT);
+                    toasterror.show();
+                }
+                else{
+                    VariablesGlobales.usuarioDeLaSesion = response.body().getUser();
+                    VariablesGlobales.Token = response.body().getToken();
+
+                    if(Arrays.asList(response.body().getUser().getRoles()).contains(ValidRoles.admin.name()) ||
+                            Arrays.asList(response.body().getUser().getRoles()).contains(ValidRoles.supervisor.name())){
+                        irMenuPrincipalAdmin();
+                    }
+                    else{
+                        irMenuPrincipalEmpleado();
+                    }
+                }
             }
 
             @Override
