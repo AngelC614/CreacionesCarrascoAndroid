@@ -9,7 +9,7 @@ public class RetrofitClient {
     public static Retrofit getRetrofitInstance(){
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl("URL_API")
+                    .baseUrl("http://localhost:3000/api/v1/auth/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

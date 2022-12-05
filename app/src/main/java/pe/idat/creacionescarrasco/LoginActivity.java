@@ -7,20 +7,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.json.JSONObject;
 
 import pe.idat.creacionescarrasco.Interface.MetodosApi;
 import pe.idat.creacionescarrasco.databinding.ActivityLoginBinding;
+import pe.idat.creacionescarrasco.model.LoginRequest;
 import pe.idat.creacionescarrasco.model.LoginResponse;
-import pe.idat.creacionescarrasco.model.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Tag;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -38,34 +40,49 @@ public class LoginActivity extends AppCompatActivity {
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iniciarSesion();
+                autenticarDatos();
             }
         });
     }
 
-    private void iniciarSesion() {
-        String emailingresado = binding.inputEmail.getText().toString();
-        String contraingresada = binding.inputContra.getText().toString();
+    private void autenticarDatos() {
+        LoginRequest loginrequest = new LoginRequest();
+
+        loginrequest.setEmail(binding.inputEmail.getText().toString());
+        loginrequest.setPassword(binding.inputContra.getText().toString());
+
+        iniciarSesion(loginrequest);
+
+    }
+
+    private void iniciarSesion(LoginRequest loginrequest) {
 
         MetodosApi metodosApi = RetrofitClient.getRetrofitInstance().create(MetodosApi.class);
-        Call<LoginResponse> call = metodosApi.iniciarSesion(emailingresado, contraingresada);
+        Call<LoginResponse> call = metodosApi.iniciarSesion(loginrequest);
 
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                //RECIBIR EL RESPONSE Y SACAR EL VALOR DE LOS ROLES, TAL VEZ CON JSONOBJECT
 
-                //USAR UN IF:
-                //DEPENDIENDO DEL ROL, VA A CIERTA ACTIVIDAD
+                //Obtiene el token y lo muestra como mensaje
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(), response.body().getToken(), Toast.LENGTH_SHORT);
 
-                //SACAR EL VALOR DEL USUARIO PARA ALMACENARLO
+                toast1.show();
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Log.e("ErrorTag", t.getMessage());
+
+                //Muestra un mensaje
+                Toast toast2 =
+                        Toast.makeText(getApplicationContext(),
+                                "Error, se acaba de ejecutar el onFailure", Toast.LENGTH_SHORT);
+
+                toast2.show();
             }
         });
+
     }
 
     //METODOS PARA IR A LA RESPECTIVA ACTIVIDAD

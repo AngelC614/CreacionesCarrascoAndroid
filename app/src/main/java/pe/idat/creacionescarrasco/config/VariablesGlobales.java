@@ -1,8 +1,8 @@
 package pe.idat.creacionescarrasco.config;
 
-import pe.idat.creacionescarrasco.model.User;
+import pe.idat.creacionescarrasco.model.LoginResponse;
 
 public class VariablesGlobales {
     public static String Token;
-    public static User usuarioDeLaSesion;
+    public static LoginResponse.User usuarioDeLaSesion;
 }
