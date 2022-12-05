@@ -63,12 +63,9 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-
+                Log.i("llego", "onResponse llego");
                 //Obtiene el token y lo muestra como mensaje
-                Toast toast1 =
-                        Toast.makeText(getApplicationContext(), response.body().getToken(), Toast.LENGTH_SHORT);
-
-                toast1.show();
+                Log.i("objeto de respuesta", response.code() + "");
             }
 
             @Override
