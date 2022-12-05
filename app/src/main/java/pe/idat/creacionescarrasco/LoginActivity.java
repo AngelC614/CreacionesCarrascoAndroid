@@ -76,8 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                     VariablesGlobales.usuarioDeLaSesion = response.body().getUser();
                     VariablesGlobales.Token = response.body().getToken();
 
-                    if(Arrays.asList(response.body().getUser().getRoles()).contains(ValidRoles.admin.name()) ||
-                            Arrays.asList(response.body().getUser().getRoles()).contains(ValidRoles.supervisor.name())){
+                    if(Arrays.asList(response.body().getUser().getRoles()).contains(ValidRoles.admin.name())){
                         irMenuPrincipalAdmin();
                     }
                     else{
