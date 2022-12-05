@@ -75,9 +75,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
 
                 //Muestra un mensaje
+                String texto = t.getMessage();
                 Toast toast2 =
                         Toast.makeText(getApplicationContext(),
-                                "Error, se acaba de ejecutar el onFailure", Toast.LENGTH_SHORT);
+                                texto, Toast.LENGTH_SHORT);
 
                 toast2.show();
             }
