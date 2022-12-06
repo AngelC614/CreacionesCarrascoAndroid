@@ -10,11 +10,16 @@
     <string name="ValEmail">Email:</string>
     <string name="ValNames">Nombre:</string>
     <string name="ValApe">Apellidos:</string>
-    <string name="ValDni">DNI:</string>
+    <string name="ValDni">Dni:</string>
     <string name="ValSex">Sexo:</string>
     <string name="ValFecha">FechaN:</string>
     <string name="ValNumero">Numero:</string>
     <string name="ValSalario">Salario:</string>
     <string name="ValInicio">MARCA DE ASISTENCIAS</string>
     <string name="ValInicio1">CREACIONES CARRASCO</string>
+    <string name="ValRegistro">Registro de Asistencia Diaria</string>
+    <string name="ValEntrada">Entrada</string>
+    <string name="ValAlmuerzo">Almuerzo</string>
+    <string name="ValFinAlmuerzo">Fin Almuerzo</string>
+    <string name="ValSalida">Salida</string>
 </resources>

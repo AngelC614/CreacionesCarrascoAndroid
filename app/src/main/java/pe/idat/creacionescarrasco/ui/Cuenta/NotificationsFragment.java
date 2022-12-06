@@ -44,6 +44,12 @@ public class NotificationsFragment extends Fragment {
         fechatxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getBirth_date());
         numerotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getPhone_number());
         salariotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getSalary());
+        if (VariablesGlobales.getUsuarioDeLaSesion().getSex().toString().equals("M")){
+            sexotxt.setText("Masculino");
+        }
+        else {
+            sexotxt.setText("Femenino");
+        }
         return root;
     }
 
