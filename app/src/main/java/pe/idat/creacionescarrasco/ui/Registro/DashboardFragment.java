@@ -24,7 +24,6 @@ import pe.idat.creacionescarrasco.config.VariablesGlobales;
 import pe.idat.creacionescarrasco.databinding.FragmentDashboardBinding;
 import pe.idat.creacionescarrasco.model.ValidRoles;
 import pe.idat.creacionescarrasco.model.registro.AsistenciasUser;
-import pe.idat.creacionescarrasco.model.registro.RegistroResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,20 +61,19 @@ public class DashboardFragment extends Fragment {
 
 
         MetodosApi metodosApi = RetrofitClient.getRetrofitInstance().create(MetodosApi.class);
-        Call<RegistroResponse> call = metodosApi.llamarvistaregistro(""+id,""+date, "Bearer "+tok);
-        call.enqueue(new Callback<RegistroResponse>() {
+        Call<AsistenciasUser> call = metodosApi.llamarvistaregistro("Bearer " + tok, id, date);
+        call.enqueue(new Callback<AsistenciasUser>() {
             @Override
-            public void onResponse(Call<RegistroResponse> call, Response<RegistroResponse> response) {
-                VariablesGlobales.asistenciasUser = response.body().getAsistenciasUser();
+            public void onResponse(Call<AsistenciasUser> call, Response<AsistenciasUser> response) {
+                VariablesGlobales.asistenciasUser = response.body();
                 btnentrada = binding.btnEntrada;
                 hola = binding.idTituloRegistro;
-                //String XD = VariablesGlobales.asistenciasUser.get_id();
-                hola.setText("");
+                hola.setText(VariablesGlobales.asistenciasUser.getUser());
             }
 
 
             @Override
-            public void onFailure(Call<RegistroResponse> call, Throwable t) {
+            public void onFailure(Call<AsistenciasUser> call, Throwable t) {
             }
         });
     }
