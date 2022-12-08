@@ -7,14 +7,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+    tools:context=".ui.Cuenta.NotificationsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="0px"
         android:paddingBottom="300px"
-        tools:context=".ui.Cuenta.NotificationsFragment"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-11dp">
 

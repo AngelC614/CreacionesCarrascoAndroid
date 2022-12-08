@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import pe.idat.creacionescarrasco.R;
+import pe.idat.creacionescarrasco.config.VariablesGlobales;
 import pe.idat.creacionescarrasco.databinding.FragmentCuentaABinding;
 import pe.idat.creacionescarrasco.databinding.FragmentInicioABinding;
 import pe.idat.creacionescarrasco.uiA.Cuenta.CuentaAViewModel;
@@ -30,8 +31,12 @@ public class InicioAFragment extends Fragment {
         binding = FragmentInicioABinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textInicio;
-        inicioAViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        //final TextView textView = binding.textInicio;
+        //inicioAViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textoEmployed = binding.txtTexto;
+        String nombre = VariablesGlobales.getUsuarioDeLaSesion().getNames();
+        textoEmployed.setText("Hola "+ nombre + "!! bienvenido al Control de asistencia de la empresa \"Creaciones Carrasco\"");
+
         return root;
     }
 

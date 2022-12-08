@@ -22,4 +22,5 @@
     <string name="ValAlmuerzo">Almuerzo</string>
     <string name="ValFinAlmuerzo">Fin Almuerzo</string>
     <string name="ValSalida">Salida</string>
+    <string name="ValAinicio">CONTROL DE ASISTENCIAS</string>
 </resources>

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import pe.idat.creacionescarrasco.R;
+import pe.idat.creacionescarrasco.config.VariablesGlobales;
 import pe.idat.creacionescarrasco.databinding.FragmentCuentaABinding;
 import pe.idat.creacionescarrasco.databinding.FragmentDashboardBinding;
 import pe.idat.creacionescarrasco.ui.Registro.DashboardViewModel;
@@ -29,8 +30,31 @@ public class CuentaAFragment extends Fragment {
         binding = FragmentCuentaABinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textCuenta;
-        cuentaAViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView usuariotxt = binding.txtusuario;
+        final TextView nombretxt = binding.txtNombres;
+        final TextView emailtxt = binding.txtEmail;
+        final TextView apellidostxt = binding.txtApellido;
+        final TextView dnitxt = binding.txtDni;
+        final TextView sexotxt = binding.txtSexo;
+        final TextView fechatxt = binding.txtFecha;
+        final TextView numerotxt = binding.txtNumero;
+        final TextView salariotxt = binding.txtSalario;
+
+        usuariotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getNames());
+        nombretxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getNames());
+        emailtxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getEmail());
+        apellidostxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getLastnames());
+        dnitxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getDni());
+        usuariotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getNames());
+        fechatxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getBirth_date());
+        numerotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getPhone_number());
+        salariotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getSalary());
+        if (VariablesGlobales.getUsuarioDeLaSesion().getSex().toString().equals("M")){
+            sexotxt.setText("Masculino");
+        }
+        else {
+            sexotxt.setText("Femenino");
+        }
         return root;
     }
 
