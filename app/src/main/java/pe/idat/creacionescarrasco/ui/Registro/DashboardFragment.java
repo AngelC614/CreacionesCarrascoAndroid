@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,19 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import pe.idat.creacionescarrasco.Interface.MetodosApi;
 import pe.idat.creacionescarrasco.RetrofitClient;
 import pe.idat.creacionescarrasco.config.VariablesGlobales;
 import pe.idat.creacionescarrasco.databinding.FragmentDashboardBinding;
-import pe.idat.creacionescarrasco.model.ValidRoles;
 import pe.idat.creacionescarrasco.model.registro.AsistenciasUser;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +35,7 @@ public class DashboardFragment extends Fragment {
     private Button btnsalida;
     private TextView hola;
     private ProgressBar progressBar;
+    private EditText edtHoraDeveloper;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,6 +50,8 @@ public class DashboardFragment extends Fragment {
         btnsalida = binding.btnSalida;
         hola = binding.idTituloRegistro;
         progressBar = binding.pb1;
+        edtHoraDeveloper = binding.editTextTextPersonName;
+
 
         btnentrada.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,43 +137,48 @@ public class DashboardFragment extends Fragment {
         call.enqueue(new Callback<AsistenciasUser>() {
             @Override
             public void onResponse(Call<AsistenciasUser> call, Response<AsistenciasUser> response) {
-                VariablesGlobales.asistenciasUser = response.body();
+                if (ValidacionStatusCode(response)){
+                    VariablesGlobales.asistenciasUser = response.body();
 
-                if (VariablesGlobales.asistenciasUser.getStart_time().equals("--:--")){
-                    btnalmuerzo.setEnabled(false);
-                    btnfinalmuerzo.setEnabled(false);
-                    btnsalida.setEnabled(false);
-                }
-                else{
-                    btnentrada.setEnabled(false);
-                    btnalmuerzo.setEnabled(true);
-                }
-                if (VariablesGlobales.asistenciasUser.getLunch_start_time().equals("--:--")){
+                    if (VariablesGlobales.asistenciasUser.getStart_time().equals("--:--")){
+                        btnalmuerzo.setEnabled(false);
+                        btnfinalmuerzo.setEnabled(false);
+                        btnsalida.setEnabled(false);
+                    }
+                    else{
+                        btnentrada.setEnabled(false);
+                        btnentrada.setText("Entrada "+VariablesGlobales.asistenciasUser.getStart_time());
+                        btnalmuerzo.setEnabled(true);
+                    }
+                    if (VariablesGlobales.asistenciasUser.getLunch_start_time().equals("--:--")){
 
-                    btnfinalmuerzo.setEnabled(false);
-                    btnsalida.setEnabled(false);
-                }
-                else{
-                    btnalmuerzo.setEnabled(false);
-                    btnfinalmuerzo.setEnabled(true);
-                }
-                if (VariablesGlobales.asistenciasUser.getLunch_end_time().equals("--:--")){
+                        btnfinalmuerzo.setEnabled(false);
+                        btnsalida.setEnabled(false);
+                    }
+                    else{
+                        btnalmuerzo.setEnabled(false);
+                        btnalmuerzo.setText("Almuerzo "+VariablesGlobales.asistenciasUser.getLunch_start_time());
+                        btnfinalmuerzo.setEnabled(true);
+                    }
+                    if (VariablesGlobales.asistenciasUser.getLunch_end_time().equals("--:--")){
 
-                    btnsalida.setEnabled(false);
-                }
-                else{
-                    btnsalida.setEnabled(true);
-                    btnfinalmuerzo.setEnabled(false);
-                }
-                if (VariablesGlobales.asistenciasUser.getEnd_time().equals("--:--")){
+                        btnsalida.setEnabled(false);
+                    }
+                    else{
+                        btnsalida.setEnabled(true);
+                        btnfinalmuerzo.setText("Fin Almuerzo "+VariablesGlobales.asistenciasUser.getLunch_end_time());
+                        btnfinalmuerzo.setEnabled(false);
+                    }
+                    if (VariablesGlobales.asistenciasUser.getEnd_time().equals("--:--")){
+
+                    }
+                    else{
+                        btnsalida.setEnabled(false);
+                        btnsalida.setText("Salida "+VariablesGlobales.asistenciasUser.getEnd_time());
+                    }
+                    ActivarVista();
 
                 }
-                else{
-                    btnsalida.setEnabled(false);
-
-                }
-                ActivarVista();
-
             }
 
 
@@ -193,13 +196,16 @@ public class DashboardFragment extends Fragment {
         String id = VariablesGlobales.getUsuarioDeLaSesion().get_id().toString();
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         String hour = new SimpleDateFormat("HH:mm").format(new Date());
+        String houredt = edtHoraDeveloper.getText().toString().replace(" ", "");
 
         MetodosApi metodosApi = RetrofitClient.getRetrofitInstance().create(MetodosApi.class);
-        Call<AsistenciasUser> call = metodosApi.regentrada("Bearer " + tok, id, date, hour);
+        Call<AsistenciasUser> call = metodosApi.regentrada("Bearer " + tok, id, date, houredt.isEmpty()?hour:houredt);
         call.enqueue(new Callback<AsistenciasUser>() {
             @Override
             public void onResponse(Call<AsistenciasUser> call, Response<AsistenciasUser> response) {
-                VariablesGlobales.asistenciasUser = response.body();
+                if (ValidacionStatusCode(response)){
+                    VariablesGlobales.asistenciasUser = response.body();
+                }
             }
 
             @Override
@@ -220,13 +226,16 @@ public class DashboardFragment extends Fragment {
         String id = VariablesGlobales.getUsuarioDeLaSesion().get_id().toString();
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         String hour = new SimpleDateFormat("HH:mm").format(new Date());
+        String houredt = edtHoraDeveloper.getText().toString().replace(" ", "");
 
         MetodosApi metodosApi = RetrofitClient.getRetrofitInstance().create(MetodosApi.class);
-        Call<AsistenciasUser> call = metodosApi.reginitalm("Bearer " + tok, id, date, hour);
+        Call<AsistenciasUser> call = metodosApi.reginitalm("Bearer " + tok, id, date, houredt.isEmpty()?hour:houredt);
         call.enqueue(new Callback<AsistenciasUser>() {
             @Override
             public void onResponse(Call<AsistenciasUser> call, Response<AsistenciasUser> response) {
-                VariablesGlobales.asistenciasUser = response.body();
+                if (ValidacionStatusCode(response)){
+                    VariablesGlobales.asistenciasUser = response.body();
+                }
             }
 
             @Override
@@ -247,13 +256,16 @@ public class DashboardFragment extends Fragment {
         String id = VariablesGlobales.getUsuarioDeLaSesion().get_id().toString();
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         String hour = new SimpleDateFormat("HH:mm").format(new Date());
+        String houredt = edtHoraDeveloper.getText().toString().replace(" ", "");
 
         MetodosApi metodosApi = RetrofitClient.getRetrofitInstance().create(MetodosApi.class);
-        Call<AsistenciasUser> call = metodosApi.regfinalm("Bearer " + tok, id, date, hour);
+        Call<AsistenciasUser> call = metodosApi.regfinalm("Bearer " + tok, id, date, houredt.isEmpty()?hour:houredt);
         call.enqueue(new Callback<AsistenciasUser>() {
             @Override
             public void onResponse(Call<AsistenciasUser> call, Response<AsistenciasUser> response) {
-                VariablesGlobales.asistenciasUser = response.body();
+                if (ValidacionStatusCode(response)){
+                    VariablesGlobales.asistenciasUser = response.body();
+                }
             }
 
             @Override
@@ -274,13 +286,16 @@ public class DashboardFragment extends Fragment {
         String id = VariablesGlobales.getUsuarioDeLaSesion().get_id().toString();
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         String hour = new SimpleDateFormat("HH:mm").format(new Date());
+        String houredt = edtHoraDeveloper.getText().toString().replace(" ", "");
 
         MetodosApi metodosApi = RetrofitClient.getRetrofitInstance().create(MetodosApi.class);
-        Call<AsistenciasUser> call = metodosApi.regsalida("Bearer " + tok, id, date, hour);
+        Call<AsistenciasUser> call = metodosApi.regsalida("Bearer " + tok, id, date, houredt.isEmpty()?hour:houredt);
         call.enqueue(new Callback<AsistenciasUser>() {
             @Override
             public void onResponse(Call<AsistenciasUser> call, Response<AsistenciasUser> response) {
-                VariablesGlobales.asistenciasUser = response.body();
+                if (ValidacionStatusCode(response)){
+                    VariablesGlobales.asistenciasUser = response.body();
+                }
             }
 
             @Override
@@ -293,6 +308,24 @@ public class DashboardFragment extends Fragment {
                 toast2.show();
             }
         });
+    }
+
+    private boolean ValidacionStatusCode(Response<AsistenciasUser> response){
+        if(response.code() == 400){
+            Toast toasterror =
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "Error sistema Horario", Toast.LENGTH_SHORT);
+            toasterror.show();
+            return false;
+        }
+        if (response.code() == 401){
+            Toast toasterror =
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "Sesion Expirada, Inicie sesion de nuevo", Toast.LENGTH_SHORT);
+            toasterror.show();
+            return false;
+        }
+        return true;
     }
 
     @Override

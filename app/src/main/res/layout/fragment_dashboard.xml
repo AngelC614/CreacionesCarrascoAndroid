@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:translationZ="2px"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +38,7 @@
 
         <Button
             android:id="@+id/btnEntrada"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_marginTop="40dp"
             android:text="@string/ValEntrada"
@@ -51,7 +52,7 @@
 
         <Button
             android:id="@+id/btnAlmuerzo"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_marginTop="40dp"
             android:text="@string/ValAlmuerzo"
@@ -65,7 +66,7 @@
 
         <Button
             android:id="@+id/btnFinAlmuerzo"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_marginTop="40dp"
             android:text="@string/ValFinAlmuerzo"
@@ -78,7 +79,7 @@
 
         <Button
             android:id="@+id/btnSalida"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_marginTop="40dp"
             android:text="@string/ValSalida"
@@ -89,6 +90,22 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnFinAlmuerzo" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:ems="10"
+            android:hint="Hora personalisada/developer"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:paddingBottom="300px"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSalida" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
