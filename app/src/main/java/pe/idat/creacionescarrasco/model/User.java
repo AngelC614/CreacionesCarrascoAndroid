@@ -11,7 +11,7 @@ public class User {
     private String birth_date;
     private String phone_number;
     private String salary;
-    private String work_position;
+    private WorkPosition work_position;
     private String[] roles;
     private boolean isActive;
 
@@ -55,7 +55,7 @@ public class User {
         return salary;
     }
 
-    public String getWork_position() {
+    public WorkPosition getWork_position() {
         return work_position;
     }
 

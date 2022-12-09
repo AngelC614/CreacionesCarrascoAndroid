@@ -34,6 +34,7 @@ public class NotificationsFragment extends Fragment {
         final TextView fechatxt = binding.txtFecha;
         final TextView numerotxt = binding.txtNumero;
         final TextView salariotxt = binding.txtSalario;
+        final TextView cargotxt = binding.txtCargo;
 
         usuariotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getNames());
         nombretxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getNames());
