@@ -2,6 +2,8 @@ package pe.idat.creacionescarrasco.Interface;
 
 import pe.idat.creacionescarrasco.model.LoginRequest;
 import pe.idat.creacionescarrasco.model.LoginResponse;
+import pe.idat.creacionescarrasco.model.WorkPosition;
+import pe.idat.creacionescarrasco.model.WorkPositionRequest;
 import pe.idat.creacionescarrasco.model.registro.AsistenciasUser;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -29,4 +31,7 @@ public interface MetodosApi {
 
     @GET("hour-register/{id}/{date}")
     Call<AsistenciasUser> llamarvistaregistro(@Path("id") String id, @Path("date") String date, @Header("Authorization") String auth);
+
+    @POST("work-position")
+    Call<WorkPositionRequest> creacionPosicionTrabajo(@Header("Authorization") String auth, @Body WorkPositionRequest workPositionRequest);
 }
