@@ -25,4 +25,5 @@
     <string name="ValAinicio">CONTROL DE ASISTENCIAS</string>
     <string name="ValCPo">Posición \n      de      : \n Trabajo </string>
     <string name="ValHTrabajo">Horario \n     de     : \n Trabajo</string>
+    <string name="ValCerrarS">Cerrar Sesión</string>
 </resources>
