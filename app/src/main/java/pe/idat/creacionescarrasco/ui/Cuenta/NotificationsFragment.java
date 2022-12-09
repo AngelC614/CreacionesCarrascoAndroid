@@ -35,6 +35,7 @@ public class NotificationsFragment extends Fragment {
         final TextView numerotxt = binding.txtNumero;
         final TextView salariotxt = binding.txtSalario;
         final TextView cargotxt = binding.txtCargo;
+        final TextView htrabajotxt = binding.txtHTrabajo;
 
         usuariotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getNames());
         nombretxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getNames());
@@ -45,6 +46,9 @@ public class NotificationsFragment extends Fragment {
         fechatxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getBirth_date());
         numerotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getPhone_number());
         salariotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getSalary());
+        cargotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getWork_position().getName());
+        htrabajotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getWork_position().getWork_start_time() + " - " +
+                VariablesGlobales.getUsuarioDeLaSesion().getWork_position().getWork_end_time());
         if (VariablesGlobales.getUsuarioDeLaSesion().getSex().toString().equals("M")){
             sexotxt.setText("Masculino");
         }
