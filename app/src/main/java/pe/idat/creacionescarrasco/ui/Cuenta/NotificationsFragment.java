@@ -50,6 +50,7 @@ public class NotificationsFragment extends Fragment {
         cargotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getWork_position().getName());
         htrabajotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getWork_position().getWork_start_time() + " - " +
                 VariablesGlobales.getUsuarioDeLaSesion().getWork_position().getWork_end_time());
+
         if (VariablesGlobales.getUsuarioDeLaSesion().getSex().toString().equals("M")){
             sexotxt.setText("Masculino");
         }

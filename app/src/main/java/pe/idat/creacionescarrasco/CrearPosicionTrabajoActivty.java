@@ -2,11 +2,19 @@ package pe.idat.creacionescarrasco;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.util.Calendar;
 
 import pe.idat.creacionescarrasco.Interface.MetodosApi;
 import pe.idat.creacionescarrasco.config.VariablesGlobales;
@@ -20,6 +28,7 @@ public class CrearPosicionTrabajoActivty extends AppCompatActivity {
     private ActivityPosicionTrabajoActivityBinding binding;
     private Button btnCreacionPosicionTrabajo;
     private Button btnIrInicio;
+    private EditText horaInicio, horaSalida;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +36,82 @@ public class CrearPosicionTrabajoActivty extends AppCompatActivity {
         binding = ActivityPosicionTrabajoActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+        // --- SETEAR BOTONES ----
         btnCreacionPosicionTrabajo = binding.btnCrearPosicionTrabajo;
         btnIrInicio = binding.btnRegresarInicioAdminPT;
+
+        // --- SETEAR HORA INPUT ---
+
+        horaInicio = binding.inputTextHoraInicioPosicionTrabajo;
+        horaSalida = binding.inputTextHoraSalidaPosicionTrabajo;
+        Calendar calendar = Calendar.getInstance();
+        final int hora = calendar.get(Calendar.HOUR_OF_DAY);
+        final int minutos = calendar.get(Calendar.MINUTE);
+
+        horaInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(CrearPosicionTrabajoActivty.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        String hora = "";
+                        if(hourOfDay < 10 && minute < 10){
+                            hora = "0" + hourOfDay + ":" + "0" + minute;
+                            horaInicio.setText(hora);
+                        }
+                        else{
+                            if(hourOfDay < 10){
+                                hora = "0" + hourOfDay + ":" + minute;
+                                horaInicio.setText(hora);
+                            }
+                            else if(minute < 10){
+                                hora = hourOfDay + ":" + "0" + minute;
+                                horaInicio.setText(hora);
+                            }
+                            else{
+                                hora = hourOfDay + ":" + minute;
+                                horaInicio.setText(hora);
+                            }
+                        }
+                    }
+                }, hora, minutos, true);
+                timePickerDialog.show();
+            }
+        });
+
+        horaSalida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(CrearPosicionTrabajoActivty.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        String hora = "";
+                        if(hourOfDay < 10 && minute < 10){
+                            hora = "0" + hourOfDay + ":" + "0" + minute;
+                            horaSalida.setText(hora);
+                        }
+                        else{
+                            if(hourOfDay < 10){
+                                hora = "0" + hourOfDay + ":" + minute;
+                                horaSalida.setText(hora);
+                            }
+                            else if(minute < 10){
+                                hora = hourOfDay + ":" + "0" + minute;
+                                horaSalida.setText(hora);
+                            }
+                            else{
+                                hora = hourOfDay + ":" + minute;
+                                horaSalida.setText(hora);
+                            }
+                        }
+                    }
+                }, hora, minutos, true);
+                timePickerDialog.show();
+            }
+        });
+
+        //horaSalida = binding.inputTextHoraSalidaPosicionTrabajo;
 
         // BOTON PARA IR AL INICIO DEL ADMIN
         btnIrInicio.setOnClickListener(new View.OnClickListener() {

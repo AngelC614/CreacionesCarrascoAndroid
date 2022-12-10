@@ -1,5 +1,8 @@
 package pe.idat.creacionescarrasco.Interface;
 
+import java.util.List;
+
+import pe.idat.creacionescarrasco.model.CrearCuentaRequest;
 import pe.idat.creacionescarrasco.model.LoginRequest;
 import pe.idat.creacionescarrasco.model.LoginResponse;
 import pe.idat.creacionescarrasco.model.WorkPosition;
@@ -34,4 +37,11 @@ public interface MetodosApi {
 
     @POST("work-position")
     Call<WorkPositionRequest> creacionPosicionTrabajo(@Header("Authorization") String auth, @Body WorkPositionRequest workPositionRequest);
+
+    @GET("work-position?all=")
+    Call<List<WorkPosition>> obtenerPosicionesTrabajo(@Header("Authorization") String auth);
+
+    @POST("auth/register")
+    Call<LoginResponse> creacionCuenta(@Header("Authorization") String auth, @Body CrearCuentaRequest crearCuentaRequest);
+    //Se esta usando el LoginResponse porque tiene el response tiene la misma estructura de esa clase
 }
