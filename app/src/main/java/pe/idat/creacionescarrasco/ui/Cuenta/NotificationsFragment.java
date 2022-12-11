@@ -1,5 +1,8 @@
 package pe.idat.creacionescarrasco.ui.Cuenta;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import pe.idat.creacionescarrasco.LoginActivity;
 import pe.idat.creacionescarrasco.config.VariablesGlobales;
 import pe.idat.creacionescarrasco.databinding.FragmentNotificationsBinding;
 
@@ -25,7 +29,6 @@ public class NotificationsFragment extends Fragment {
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         final TextView usuariotxt = binding.txtusuario;
         final TextView nombretxt = binding.txtNombres;
         final TextView emailtxt = binding.txtEmail;
@@ -37,7 +40,31 @@ public class NotificationsFragment extends Fragment {
         final TextView salariotxt = binding.txtSalario;
         final TextView cargotxt = binding.txtCargo;
         final TextView htrabajotxt = binding.txtHTrabajo;
+        final Button btn_cerrar_sesion = binding.btnCerrar;
+        btn_cerrar_sesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder AlertDialogPerzonalizado = new AlertDialog.Builder(getContext());
+                AlertDialogPerzonalizado.setMessage("¿Seguro que desea cerrar sesión?")
+                        .setCancelable(false)
+                        .setPositiveButton("SÍ", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                cerrarSession();
+                            }
+                        })
+                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                AlertDialog pregunta = AlertDialogPerzonalizado.create();
+                pregunta.setTitle("Salir");
+                pregunta.show();
 
+            }
+        });
         usuariotxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getNames());
         nombretxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getNames());
         emailtxt.setText(VariablesGlobales.getUsuarioDeLaSesion().getEmail());
@@ -64,5 +91,15 @@ public class NotificationsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+    public void cerrarSession() {
+        VariablesGlobales.setToken("");
+        VariablesGlobales.setUsuarioDeLaSesion(null);
+        irAlLogin();
+        getActivity().finish();
+    }
+    private void irAlLogin(){
+        Intent intentLogin = new Intent(this.getContext(), LoginActivity.class);
+        startActivity(intentLogin);
     }
 }

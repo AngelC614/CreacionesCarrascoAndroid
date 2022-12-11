@@ -2,7 +2,9 @@ package pe.idat.creacionescarrasco;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -46,7 +47,10 @@ public class LoginActivity extends AppCompatActivity {
                 autenticarDatos();
             }
         });
+        binding.inputEmail.setText("EricTaylorNikolaus@Kong.com");
+        binding.inputContra.setText("since25193");
     }
+
 
     private void autenticarDatos() {
         LoginRequest loginrequest = new LoginRequest();
@@ -75,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     VariablesGlobales.usuarioDeLaSesion = response.body().getUser();
                     VariablesGlobales.Token = response.body().getToken();
-
+                    SharedPreferences pref = getSharedPreferences("token", Context.MODE_PRIVATE);
                     if(Arrays.asList(response.body().getUser().getRoles()).contains(ValidRoles.admin.name())){
                         irMenuPrincipalAdmin();
                     }
@@ -104,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
     private void irMenuPrincipalEmpleado() {
         Intent intentMenuPrincipal = new Intent(this, MainActivity.class);
         startActivity((intentMenuPrincipal));
+        this.finish();
     }
     private void irMenuPrincipalAdmin() {
         Intent intentMenuPrincipalAdmin = new Intent(this, AdminActivity.class);
