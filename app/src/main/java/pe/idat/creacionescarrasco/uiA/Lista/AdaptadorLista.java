@@ -31,9 +31,9 @@ public class AdaptadorLista extends RecyclerView.Adapter<AdaptadorLista.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final HourRegisterResponse itemHourRegisterResponse = listaDatos.get(position);
         String nombreCompletoEmpleado = itemHourRegisterResponse.getUser().getNames()
-                + itemHourRegisterResponse.getUser().getLastnames();
+                + " " + itemHourRegisterResponse.getUser().getLastnames();
         String horarioEmpleado = itemHourRegisterResponse.getUser().getWork_position().getWork_start_time()
-                + " " + itemHourRegisterResponse.getUser().getWork_position().getWork_end_time();
+                + " - " + itemHourRegisterResponse.getUser().getWork_position().getWork_end_time();
 
         int minutosfaltantes = itemHourRegisterResponse.getMissing_minutes();
         String minutosfaltantesTexto = String.valueOf(minutosfaltantes);

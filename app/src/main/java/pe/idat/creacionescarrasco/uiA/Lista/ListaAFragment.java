@@ -121,23 +121,12 @@ public class ListaAFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (WorkPositionIDobtenido.equals("nada")) {
-                    if (TextUtils.isEmpty(inputNombre.getText().toString())){
-                        Toast.makeText(getContext(), "Ingrese un valor a buscar", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Toast.makeText(getContext(), "Buscando...", Toast.LENGTH_SHORT).show();
-                        mostrarPorNombre();
-                    }
+                    Toast.makeText(getContext(), "Buscando...", Toast.LENGTH_SHORT).show();
+                    mostrarPorNombre();
                 }
                 else{
-                    if (TextUtils.isEmpty(inputNombre.getText().toString())){
-                        Toast.makeText(getContext(), "Buscando...", Toast.LENGTH_SHORT).show();
-                        mostrarPorWorkPosition();
-                    }
-                    else{
-                        Toast.makeText(getContext(), "Buscando...", Toast.LENGTH_SHORT).show();
-                        mostrarConAmbosFiltros();
-                    }
+                    Toast.makeText(getContext(), "Buscando...", Toast.LENGTH_SHORT).show();
+                    mostrarConAmbosFiltros();
                 }
             }
         });
