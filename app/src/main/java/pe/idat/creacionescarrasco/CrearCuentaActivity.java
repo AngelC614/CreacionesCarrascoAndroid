@@ -58,13 +58,6 @@ public class CrearCuentaActivity extends AppCompatActivity {
         CrearCuentaRequest CuentaACrear = new CrearCuentaRequest();
         listaRoles.add("employed");
 
-        textprueba = binding.txtpruebacc;
-        textprueba.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-
         // --- SPINNER ---
         spinner = binding.spinnerPosicionesTrabajo;
         adaptador = new ArrayAdapter<String>(CrearCuentaActivity.this, android.R.layout.simple_spinner_item, listaWorkPosition);

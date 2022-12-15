@@ -1,8 +1,11 @@
 package pe.idat.creacionescarrasco.Interface;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import pe.idat.creacionescarrasco.model.CrearCuentaRequest;
+import pe.idat.creacionescarrasco.model.HourRegisterResponse;
 import pe.idat.creacionescarrasco.model.LoginRequest;
 import pe.idat.creacionescarrasco.model.LoginResponse;
 import pe.idat.creacionescarrasco.model.WorkPosition;
@@ -14,6 +17,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface MetodosApi {
 
@@ -43,5 +47,8 @@ public interface MetodosApi {
 
     @POST("auth/register")
     Call<LoginResponse> creacionCuenta(@Header("Authorization") String auth, @Body CrearCuentaRequest crearCuentaRequest);
-    //Se esta usando el LoginResponse porque tiene el response tiene la misma estructura de esa clase
+    //Se esta usando el LoginResponse porque el response tiene la misma estructura de esa clase
+
+    @GET("hour-register")
+    Call<List<HourRegisterResponse>> obtenerHorasEmpleados(@Header("Authorization") String auth, @Query("userNamesComplex") String userNamesComplex, @Query("workPositionID") String idWorkPosition);
 }

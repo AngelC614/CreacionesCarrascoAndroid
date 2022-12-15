@@ -47,8 +47,8 @@ public class LoginActivity extends AppCompatActivity {
                 autenticarDatos();
             }
         });
-        binding.inputEmail.setText("EricTaylorNikolaus@Kong.com");
-        binding.inputContra.setText("since25193");
+        binding.inputEmail.setText("ChelseaLeahMacGyver@bandwidth.com");
+        binding.inputContra.setText("Tasty39735");
     }
 
 
