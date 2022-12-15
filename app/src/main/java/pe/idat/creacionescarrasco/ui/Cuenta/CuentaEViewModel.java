@@ -5,13 +5,12 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import pe.idat.creacionescarrasco.config.VariablesGlobales;
-import pe.idat.creacionescarrasco.model.User;
 
-public class NotificationsViewModel extends ViewModel {
+public class CuentaEViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public CuentaEViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue(VariablesGlobales.getUsuarioDeLaSesion().getNames().toString());
     }

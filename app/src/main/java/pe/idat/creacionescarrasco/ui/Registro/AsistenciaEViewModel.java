@@ -1,16 +1,16 @@
-package pe.idat.creacionescarrasco.ui.Inicio;
+package pe.idat.creacionescarrasco.ui.Registro;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class AsistenciaEViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public AsistenciaEViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Info Inicio");
+        mText.setValue("Registro de Asistencia");
     }
 
     public LiveData<String> getText() {

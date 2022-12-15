@@ -9,17 +9,17 @@
         android:id="@+id/navigation_inicio_a"
         android:name="pe.idat.creacionescarrasco.uiA.Inicio.InicioAFragment"
         android:label="@string/title_inicio_a"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_inicio_empleado" />
 
     <fragment
         android:id="@+id/navigation_lista_a"
         android:name="pe.idat.creacionescarrasco.uiA.Lista.ListaAFragment"
         android:label="@string/title_lista_a"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_asistencia_empleado" />
 
     <fragment
         android:id="@+id/navigation_cuenta_a"
         android:name="pe.idat.creacionescarrasco.uiA.Cuenta.CuentaAFragment"
         android:label="@string/title_cuenta_a"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_cuenta_empleado" />
 </navigation>

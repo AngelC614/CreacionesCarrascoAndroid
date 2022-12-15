@@ -125,13 +125,23 @@ public class CrearCuentaActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month = month + 1;
                         String fecha = "";
-                        if(day < 10){
-                            fecha = year + "-" + month + "-0" + day;
+                        if(day < 10 && month < 10){
+                            fecha = year + "-0" + month + "-0" + day;
                             binding.txtInputFechaNacimiento.setText(fecha);
                         }
                         else{
-                            fecha = year + "-" + month + "-" + day;
-                            binding.txtInputFechaNacimiento.setText(fecha);
+                            if(day < 10) {
+                                fecha = year + "-" + month + "-0" + day;
+                                binding.txtInputFechaNacimiento.setText(fecha);
+                            }
+                            else if(month < 10){
+                                fecha = year + "-0" + month + "-" + day;
+                                binding.txtInputFechaNacimiento.setText(fecha);
+                            }
+                            else{
+                                fecha = year + "-" + month + "-" + day;
+                                binding.txtInputFechaNacimiento.setText(fecha);
+                            }
                         }
                     }
                 }, year, month, day);

@@ -11,22 +11,19 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import pe.idat.creacionescarrasco.config.VariablesGlobales;
-import pe.idat.creacionescarrasco.databinding.FragmentHomeBinding;
+import pe.idat.creacionescarrasco.databinding.FragmentInicioEmpleadoBinding;
 
-public class HomeFragment extends Fragment {
+public class InicioEFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentInicioEmpleadoBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        InicioEViewModel homeViewModel =
+                new ViewModelProvider(this).get(InicioEViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentInicioEmpleadoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        //final TextView textView = binding.textInicio;
-        //homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         final TextView textoEmployed = binding.txtTexto;
         String nombre = VariablesGlobales.getUsuarioDeLaSesion().getNames();

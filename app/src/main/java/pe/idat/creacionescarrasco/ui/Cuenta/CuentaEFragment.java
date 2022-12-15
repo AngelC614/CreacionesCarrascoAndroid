@@ -16,18 +16,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import pe.idat.creacionescarrasco.LoginActivity;
 import pe.idat.creacionescarrasco.config.VariablesGlobales;
-import pe.idat.creacionescarrasco.databinding.FragmentNotificationsBinding;
+import pe.idat.creacionescarrasco.databinding.FragmentCuentaEmpleadoBinding;
 
-public class NotificationsFragment extends Fragment {
+public class CuentaEFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentCuentaEmpleadoBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        CuentaEViewModel notificationsViewModel =
+                new ViewModelProvider(this).get(CuentaEViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentCuentaEmpleadoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         final TextView usuariotxt = binding.txtusuario;
         final TextView nombretxt = binding.txtNombres;
@@ -40,7 +40,7 @@ public class NotificationsFragment extends Fragment {
         final TextView salariotxt = binding.txtSalario;
         final TextView cargotxt = binding.txtCargo;
         final TextView htrabajotxt = binding.txtHTrabajo;
-        final Button btn_cerrar_sesion = binding.btnCerrar;
+        final Button btn_cerrar_sesion = binding.btnCerrarSesion;
         btn_cerrar_sesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

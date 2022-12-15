@@ -8,7 +8,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-    tools:context=".ui.Cuenta.NotificationsFragment">
+    tools:context=".ui.Cuenta.CuentaEFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -272,7 +272,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <Button
-            android:id="@+id/btnCerrar"
+            android:id="@+id/btnCerrarSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"

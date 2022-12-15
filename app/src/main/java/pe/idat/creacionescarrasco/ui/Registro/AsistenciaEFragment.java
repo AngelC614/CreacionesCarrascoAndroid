@@ -20,15 +20,15 @@ import java.util.Date;
 import pe.idat.creacionescarrasco.Interface.MetodosApi;
 import pe.idat.creacionescarrasco.RetrofitClient;
 import pe.idat.creacionescarrasco.config.VariablesGlobales;
-import pe.idat.creacionescarrasco.databinding.FragmentDashboardBinding;
+import pe.idat.creacionescarrasco.databinding.FragmentAsistenciaEmpleadoBinding;
 import pe.idat.creacionescarrasco.model.registro.AsistenciasUser;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DashboardFragment extends Fragment {
+public class AsistenciaEFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentAsistenciaEmpleadoBinding binding;
     private Button btnentrada;
     private Button btnalmuerzo;
     private Button btnfinalmuerzo;
@@ -39,10 +39,10 @@ public class DashboardFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        AsistenciaEViewModel asistenciaEViewModel =
+                new ViewModelProvider(this).get(AsistenciaEViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentAsistenciaEmpleadoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         btnentrada = binding.btnEntrada;
         btnalmuerzo = binding.btnAlmuerzo;
