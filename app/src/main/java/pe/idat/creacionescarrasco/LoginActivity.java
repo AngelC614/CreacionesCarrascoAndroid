@@ -47,15 +47,13 @@ public class LoginActivity extends AppCompatActivity {
                 autenticarDatos();
             }
         });
-        binding.inputEmail.setText("ChelseaLeahMacGyver@bandwidth.com");
-        binding.inputContra.setText("Tasty39735");
     }
 
 
     private void autenticarDatos() {
         LoginRequest loginrequest = new LoginRequest();
 
-        loginrequest.setEmail(binding.inputEmail.getText().toString());
+        loginrequest.setEmail(binding.inputEmail.getText().toString()+"@gmail.com");
         loginrequest.setPassword(binding.inputContra.getText().toString());
 
         iniciarSesion(loginrequest);

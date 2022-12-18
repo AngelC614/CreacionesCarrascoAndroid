@@ -123,7 +123,7 @@ public class AsistenciaEFragment extends Fragment {
         btnfinalmuerzo.setVisibility(View.VISIBLE);
         btnentrada.setVisibility(View.VISIBLE);
         hola.setVisibility(View.VISIBLE);
-
+        edtHoraDeveloper.setVisibility(View.VISIBLE);
     }
 
     private void VistaRegis(){
